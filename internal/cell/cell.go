@@ -90,9 +90,8 @@ func (c *Cell) Step(current, dtH float64) {
 	}
 	c.state.Capacity = effCap
 
-	prev := c.state.SOC
+	// Coulomb counting
 	c.state.SOC = coulomb.CoulombSOC(effCap, c.state.SOC, current, dtH)
-	c.state.SOC = restoreSOC(prev, c.state.SOC)
 	c.state.Current = current
 
 	// OCV at current SOC

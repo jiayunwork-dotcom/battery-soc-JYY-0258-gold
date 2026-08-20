@@ -24,9 +24,6 @@ func clampSOC(s float64) float64 {
 //
 // The result is clamped to [0,100].
 func CoulombSOC(capacityAh, prevSOC, current, dtH float64) float64 {
-	if skipDischarge(current) {
-		return prevSOC
-	}
 	soc := prevSOC + (current*dtH/capacityAh)*100
 	return clampSOC(soc)
 }
